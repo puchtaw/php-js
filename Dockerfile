@@ -65,16 +65,15 @@ RUN wget https://getcomposer.org/composer.phar \
     && chmod +x /usr/bin/composer
 
 
-curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 # NODE  + GULP
-RUN sudo sh -c "echo deb https://deb.nodesource.com/node_10.x cosmic main > /etc/apt/sources.list.d/nodesource.list"
+RUN sh -c "echo deb https://deb.nodesource.com/node_10.x cosmic main > /etc/apt/sources.list.d/nodesource.list" \
     && apt-get update \
     && apt-get install -y nodejs \
     && npm install gulp -g
 
 # SUPERVISOR
 RUN apt-get update && apt-get install -y supervisor
-COPY ./docker/supervisord.conf /etc/supervisord.conf
 
 # CONFIGURE
 RUN useradd -d /var/www/html -r -u 1000 app \
