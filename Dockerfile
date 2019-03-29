@@ -55,6 +55,8 @@ RUN apt-get update; \
         php7.1-curl \
         php7.1-mysql \
         libapache2-mod-php7.1 \
+        unzip \
+        lftp \
         --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && sed -i 's/memory_limit.*/memory_limit = 256M/' /etc/php/7.1/apache2/php.ini; 
