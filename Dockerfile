@@ -85,6 +85,8 @@ RUN useradd -d /var/www/html -r -u 1000 app \
     && echo 'date.timezone = "Europe/Warsaw"' >> /etc/php/7.1/apache2/php.ini \
     && echo 'date.timezone = "Europe/Warsaw"' >> /etc/php/7.1/cli/php.ini;
 
+COPY supervisord.conf /etc/supervisord.conf
+
 WORKDIR /var/www/html
 VOLUME /var/www/html
 
